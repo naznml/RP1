@@ -1,1 +1,654 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Педагогика — магистратура DEMO</title>
 
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#fff7ed;
+  color:#1f2937;
+  line-height:1.6;
+  user-select:none;
+  overflow-x:hidden;
+}
+
+/* Фон-анимация */
+.bg-icons{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:0;
+  overflow:hidden;
+}
+.bg-icons span{
+  position:absolute;
+  font-size:34px;
+  opacity:.08;
+  animation:float 12s infinite ease-in-out;
+}
+.bg-icons span:nth-child(1){left:8%;top:20%;animation-delay:0s}
+.bg-icons span:nth-child(2){left:78%;top:18%;animation-delay:2s}
+.bg-icons span:nth-child(3){left:15%;top:70%;animation-delay:4s}
+.bg-icons span:nth-child(4){left:85%;top:75%;animation-delay:1s}
+.bg-icons span:nth-child(5){left:48%;top:45%;animation-delay:3s}
+@keyframes float{
+  0%,100%{transform:translateY(0) rotate(0deg)}
+  50%{transform:translateY(-24px) rotate(8deg)}
+}
+
+.hero{
+  position:relative;
+  z-index:1;
+  background:linear-gradient(135deg,#1c0f0a,#7c2d12,#b45309);
+  color:white;
+  text-align:center;
+  padding:50px 16px 42px;
+}
+.codes{
+  display:flex;
+  justify-content:center;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-bottom:16px;
+}
+.codes span{
+  background:rgba(255,255,255,.15);
+  border:1px solid rgba(255,255,255,.28);
+  padding:7px 12px;
+  border-radius:999px;
+  font-weight:800;
+  font-size:13px;
+}
+h1{
+  margin:0;
+  font-size:42px;
+}
+.subtitle{
+  max-width:850px;
+  margin:12px auto 0;
+  font-size:18px;
+  opacity:.95;
+}
+.notice{
+  max-width:760px;
+  margin:22px auto 0;
+  background:#fef3c7;
+  color:#78350f;
+  border:2px solid #facc15;
+  border-radius:20px;
+  padding:16px 18px;
+  font-weight:700;
+}
+.notice small{
+  display:block;
+  margin-top:5px;
+  font-weight:500;
+}
+
+.nav{
+  position:sticky;
+  top:0;
+  z-index:10;
+  background:rgba(255,255,255,.95);
+  backdrop-filter:blur(10px);
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  flex-wrap:wrap;
+  padding:13px;
+  border-bottom:1px solid #fed7aa;
+  box-shadow:0 8px 20px rgba(15,23,42,.08);
+}
+.nav a{
+  text-decoration:none;
+  background:#fff7ed;
+  color:#9a3412;
+  border:1px solid #fdba74;
+  border-radius:999px;
+  padding:9px 16px;
+  font-weight:800;
+}
+.nav a:hover{
+  background:#c2410c;
+  color:white;
+}
+
+.wrap{
+  position:relative;
+  z-index:1;
+  max-width:1050px;
+  margin:32px auto 70px;
+  padding:0 16px;
+}
+.card{
+  background:white;
+  border:1px solid #fed7aa;
+  border-radius:28px;
+  padding:26px;
+  box-shadow:0 18px 44px rgba(15,23,42,.12);
+}
+.head{
+  border-bottom:1px solid #ffedd5;
+  padding-bottom:16px;
+  margin-bottom:18px;
+}
+h2{
+  margin:0;
+  color:#9a3412;
+  font-size:28px;
+}
+.desc{
+  margin-top:10px;
+  background:#fff7ed;
+  border-left:6px solid #f97316;
+  border-radius:14px;
+  padding:12px 14px;
+  color:#374151;
+}
+
+.q{
+  border:1px solid #e5e7eb;
+  border-radius:20px;
+  padding:18px;
+  margin:16px 0;
+  background:#fff;
+}
+.q:hover{
+  border-color:#fdba74;
+  box-shadow:0 10px 24px rgba(249,115,22,.12);
+}
+.qtag{
+  display:inline-block;
+  font-size:12px;
+  font-weight:800;
+  color:#9a3412;
+  background:#ffedd5;
+  border-radius:999px;
+  padding:4px 10px;
+  margin-bottom:8px;
+}
+.qtitle{
+  font-weight:800;
+  margin-bottom:11px;
+  color:#111827;
+}
+.opt{
+  display:block;
+  margin:8px 0;
+  padding:11px 13px;
+  border-radius:13px;
+  background:#fafafa;
+  border:1px solid #f1f5f9;
+  cursor:pointer;
+}
+.opt:hover{
+  background:#fff7ed;
+  border-color:#fdba74;
+}
+.opt input{
+  margin-right:8px;
+}
+
+.btn{
+  border:0;
+  border-radius:17px;
+  background:linear-gradient(135deg,#ea580c,#ca8a04);
+  color:white;
+  font-size:16px;
+  font-weight:800;
+  padding:14px 24px;
+  cursor:pointer;
+  box-shadow:0 10px 24px rgba(234,88,12,.28);
+}
+.btn:hover{
+  transform:translateY(-1px);
+}
+.result{
+  margin-top:22px;
+}
+.summary{
+  background:#ecfdf5;
+  border:1px solid #86efac;
+  border-left:6px solid #22c55e;
+  border-radius:18px;
+  padding:18px;
+  margin-bottom:16px;
+}
+.summary h3{
+  margin:0;
+  color:#15803d;
+  font-size:24px;
+}
+.ans{
+  border-radius:16px;
+  padding:15px;
+  margin:12px 0;
+  border:1px solid #e5e7eb;
+}
+.ok{
+  background:#ecfdf5;
+  border-color:#86efac;
+}
+.bad{
+  background:#fff1f2;
+  border-color:#fecdd3;
+}
+.oktxt{
+  color:#15803d;
+  font-weight:800;
+}
+.badtxt{
+  color:#be123c;
+  font-weight:800;
+}
+.ex{
+  margin-top:8px;
+  font-size:15px;
+}
+.footer{
+  text-align:center;
+  color:#64748b;
+  margin-top:28px;
+  font-size:14px;
+}
+
+@media(max-width:720px){
+  h1{font-size:31px}
+  .card{padding:19px;border-radius:22px}
+  h2{font-size:23px}
+  .subtitle{font-size:16px}
+}
+</style>
+</head>
+
+<body>
+
+<div class="bg-icons">
+  <span>📚</span>
+  <span>📝</span>
+  <span>🎓</span>
+  <span>✨</span>
+  <span>📖</span>
+</div>
+
+<section class="hero">
+  <div class="codes">
+    <span>M001</span>
+    <span>M004</span>
+    <span>M005</span>
+    <span>M006</span>
+    <span>M007</span>
+    <span>M008</span>
+    <span>M017</span>
+    <span>M018</span>
+    <span>M019</span>
+    <span>M200</span>
+  </div>
+
+  <h1>Педагогика</h1>
+
+  <div class="subtitle">
+    Русский DEMO-тест для подготовки к магистратуре: теория педагогики, методология, ЦПП, дидактика, контроль и методы обучения.
+  </div>
+
+  <div class="notice">
+    © @elnazm_ln<br>
+    Бұл сайтты көшіруге, қайта сатуға және таратуға тыйым салынады.
+    <small>Копировать сайт, перепродавать и распространять запрещено.</small>
+  </div>
+</section>
+
+<nav class="nav">
+  <a href="#demo">Педагогика DEMO</a>
+  <a href="#result-demo">Результат</a>
+</nav>
+
+<main class="wrap">
+  <section class="card" id="demo">
+    <div class="head">
+      <h2>Педагогика — 15 демо-вопросов</h2>
+      <div class="desc">
+        Формат: 1 вопрос + 5 близких вариантов ответа. Вопросы составлены по официальной структуре тем магистратуры.
+      </div>
+    </div>
+
+    <div id="questions"></div>
+
+    <button class="btn" onclick="checkTest()">Нәтижені көрсету / Показать результат</button>
+    <div class="result" id="result-demo"></div>
+  </section>
+
+  <div class="footer">
+    © @elnazm_ln — Педагогика DEMO
+  </div>
+</main>
+
+<script>
+const QUESTIONS = [
+{
+  n:1,
+  q:"Образование в современной педагогике рассматривается как:",
+  a:"ценность, процесс, результат и система",
+  options:[
+    "ценность, процесс, результат и система",
+    "только процесс передачи знаний",
+    "только результат обучения учащихся",
+    "совокупность учебных предметов",
+    "форма контроля учебных достижений"
+  ]
+},
+{
+  n:2,
+  q:"Объектом деятельности педагога является:",
+  a:"педагогический процесс",
+  options:[
+    "педагогический процесс",
+    "учебная программа",
+    "метод обучения",
+    "воспитательное мероприятие",
+    "педагогическая технология"
+  ]
+},
+{
+  n:3,
+  q:"Объектом педагогики как науки является:",
+  a:"целостный педагогический процесс",
+  options:[
+    "целостный педагогический процесс",
+    "отдельный учебный предмет",
+    "педагогическая документация",
+    "методика преподавания дисциплины",
+    "личные качества обучающегося"
+  ]
+},
+{
+  n:4,
+  q:"Предметом педагогики является:",
+  a:"закономерности целостного педагогического процесса",
+  options:[
+    "закономерности целостного педагогического процесса",
+    "содержание школьных учебников",
+    "административное управление школой",
+    "биологическое развитие человека",
+    "психические процессы личности"
+  ]
+},
+{
+  n:5,
+  q:"Учение о принципах построения, формах и способах научно-познавательной деятельности называется:",
+  a:"методология",
+  options:[
+    "методология",
+    "дидактика",
+    "педагогическая технология",
+    "социализация",
+    "профессиограмма"
+  ]
+},
+{
+  n:6,
+  q:"К основным категориям педагогики относятся:",
+  a:"воспитание, обучение, образование, педагогический процесс",
+  options:[
+    "воспитание, обучение, образование, педагогический процесс",
+    "наблюдение, эксперимент, беседа, анкетирование",
+    "цель, мотив, интерес, потребность",
+    "урок, экскурсия, семинар, практикум",
+    "контроль, оценка, отметка, диагностика"
+  ]
+},
+{
+  n:7,
+  q:"Личность в педагогике рассматривается как:",
+  a:"субъект деятельности, общения и саморазвития",
+  options:[
+    "субъект деятельности, общения и саморазвития",
+    "только объект внешнего педагогического воздействия",
+    "совокупность врождённых биологических признаков",
+    "результат только наследственного развития",
+    "носитель учебной информации"
+  ]
+},
+{
+  n:8,
+  q:"К факторам развития и формирования личности относятся:",
+  a:"наследственность, среда, воспитание и деятельность",
+  options:[
+    "наследственность, среда, воспитание и деятельность",
+    "только обучение и контроль",
+    "только семья и школа",
+    "учебный план, учебник и программа",
+    "оценка, отметка и диагностика"
+  ]
+},
+{
+  n:9,
+  q:"Целостный педагогический процесс — это:",
+  a:"единство обучения, воспитания и развития личности",
+  options:[
+    "единство обучения, воспитания и развития личности",
+    "система только учебных занятий",
+    "процесс выставления итоговой оценки",
+    "совокупность методов контроля",
+    "форма организации внеклассной работы"
+  ]
+},
+{
+  n:10,
+  q:"Системообразующим фактором целостного педагогического процесса является:",
+  a:"цель",
+  options:[
+    "цель",
+    "отметка",
+    "учебник",
+    "расписание",
+    "кабинет"
+  ]
+},
+{
+  n:11,
+  q:"Дидактика — это раздел педагогики, изучающий:",
+  a:"теорию обучения и образования",
+  options:[
+    "теорию обучения и образования",
+    "теорию семейного воспитания",
+    "историю педагогической мысли",
+    "возрастные особенности личности",
+    "управление образовательной организацией"
+  ]
+},
+{
+  n:12,
+  q:"Первым термин «дидактика» ввёл в научный оборот:",
+  a:"В. Ратке",
+  options:[
+    "В. Ратке",
+    "Я. А. Коменский",
+    "И. Г. Песталоцци",
+    "К. Д. Ушинский",
+    "Ж. Ж. Руссо"
+  ]
+},
+{
+  n:13,
+  q:"К словесным методам обучения относится:",
+  a:"лекция",
+  options:[
+    "лекция",
+    "демонстрация",
+    "упражнение",
+    "лабораторная работа",
+    "практическая работа"
+  ]
+},
+{
+  n:14,
+  q:"Многократное выполнение умственного или практического действия с целью формирования навыка называется:",
+  a:"упражнение",
+  options:[
+    "упражнение",
+    "объяснение",
+    "наблюдение",
+    "дискуссия",
+    "демонстрация"
+  ]
+},
+{
+  n:15,
+  q:"Контроль в обучении направлен прежде всего на:",
+  a:"выявление уровня учебных достижений учащихся",
+  options:[
+    "выявление уровня учебных достижений учащихся",
+    "замену процесса обучения оценкой",
+    "исключение самостоятельной работы учащихся",
+    "только сравнение учащихся между собой",
+    "отказ от обратной связи"
+  ]
+}
+];
+
+function shuffle(arr){
+  const a=[...arr];
+  for(let i=a.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [a[i],a[j]]=[a[j],a[i]];
+  }
+  return a;
+}
+
+function norm(text){
+  return String(text||"")
+    .toLowerCase()
+    .replace(/\s+/g," ")
+    .replace(/[.,;:!?()«»"']/g,"")
+    .trim();
+}
+
+function explain(q,a){
+  const text=norm(q+" "+a);
+
+  if(text.includes("образован")){
+    return "Образование в педагогике понимается шире, чем просто обучение: оно выступает как ценность, процесс, результат и система.";
+  }
+
+  if(text.includes("объект") || text.includes("предмет") || text.includes("категория")){
+    return "Педагогика изучает целостный педагогический процесс, его закономерности, категории и связи между обучением, воспитанием и развитием.";
+  }
+
+  if(text.includes("методология")){
+    return "Методология раскрывает принципы, формы и способы научного познания, на которых строится педагогическое исследование.";
+  }
+
+  if(text.includes("личность") || text.includes("фактор")){
+    return "Развитие личности зависит от наследственности, среды, воспитания, деятельности и общения.";
+  }
+
+  if(text.includes("целостный педагогический процесс") || text.includes("системообразующим")){
+    return "Целостный педагогический процесс объединяет обучение, воспитание и развитие. Его системообразующим фактором является цель.";
+  }
+
+  if(text.includes("дидактика") || text.includes("ратке")){
+    return "Дидактика изучает теорию обучения и образования. Термин «дидактика» связывают с В. Ратке.";
+  }
+
+  if(text.includes("метод") || text.includes("упражнение") || text.includes("лекция")){
+    return "Методы обучения делятся на словесные, наглядные и практические. Лекция относится к словесным методам, упражнение — к практическим.";
+  }
+
+  if(text.includes("контроль")){
+    return "Контроль позволяет определить уровень учебных достижений учащихся и получить данные для дальнейшей коррекции обучения.";
+  }
+
+  return "Правильный ответ соответствует основной педагогической категории, указанной в вопросе.";
+}
+
+function render(){
+  const box=document.getElementById("questions");
+
+  box.innerHTML=QUESTIONS.map((item,index)=>{
+    item.options=shuffle(item.options);
+    item.correctIndex=item.options.findIndex(x=>norm(x)===norm(item.a));
+
+    return `
+      <div class="q">
+        <div class="qtag">Single answer</div>
+        <div class="qtitle">${index+1}. ${item.q}</div>
+        ${item.options.map((opt,oi)=>`
+          <label class="opt">
+            <input type="radio" name="q${index}" value="${oi}">
+            ${String.fromCharCode(65+oi)}) ${opt}
+          </label>
+        `).join("")}
+      </div>
+    `;
+  }).join("");
+}
+
+function checkTest(){
+  let score=0;
+  let html="";
+
+  QUESTIONS.forEach((item,index)=>{
+    const selected=document.querySelector(`input[name="q${index}"]:checked`);
+    const selectedIndex=selected ? Number(selected.value) : -1;
+    const ok=selectedIndex===item.correctIndex;
+
+    if(ok) score++;
+
+    const yourAnswer=selectedIndex>=0
+      ? `${String.fromCharCode(65+selectedIndex)}) ${item.options[selectedIndex]}`
+      : "Жауап таңдалмаған / Ответ не выбран";
+
+    const correctAnswer=`${String.fromCharCode(65+item.correctIndex)}) ${item.a}`;
+
+    html+=`
+      <div class="ans ${ok ? "ok" : "bad"}">
+        <div><b>${index+1}. ${item.q}</b></div>
+        <div class="${ok ? "oktxt" : "badtxt"}">${ok ? "Дұрыс / Верно" : "Қате / Неверно"}</div>
+
+        <div class="ex"><b>Ваш ответ:</b><br>${yourAnswer}</div>
+        <div class="ex"><b>Правильный ответ:</b><br>${correctAnswer}</div>
+        <div class="ex"><b>Пояснение:</b><br>${explain(item.q,item.a)}</div>
+      </div>
+    `;
+  });
+
+  const percent=Math.round(score/QUESTIONS.length*100);
+
+  document.getElementById("result-demo").innerHTML=`
+    <div class="summary">
+      <h3>${score} / ${QUESTIONS.length} дұрыс</h3>
+      <p>Результат: <b>${percent}%</b></p>
+    </div>
+    ${html}
+  `;
+
+  document.getElementById("result-demo").scrollIntoView({
+    behavior:"smooth",
+    block:"start"
+  });
+}
+
+render();
+
+document.addEventListener("contextmenu",e=>e.preventDefault());
+document.addEventListener("dragstart",e=>e.preventDefault());
+document.addEventListener("keydown",function(e){
+  const k=e.key.toUpperCase();
+  if(
+    e.key==="F12" ||
+    (e.ctrlKey && e.shiftKey && ["I","J","C"].includes(k)) ||
+    (e.ctrlKey && ["U","S","P","A","C"].includes(k))
+  ){
+    e.preventDefault();
+  }
+});
+</script>
+</body>
+</html>
